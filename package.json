@@ -1,0 +1,15 @@
+{
+  "name": "cute_space_scenes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dharmaDev",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "twitter-lite": "^0.14.0"
+  }
+}

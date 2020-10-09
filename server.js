@@ -100,19 +100,19 @@ const inhabitants = [{
         "description": "alien"
     },
     {
-        "emoji": "\ud83d\udc68\u200d\ud83d\ude80",
+        "emoji": "👨‍🚀",
         "description": "astronaut"
     },
     {
-        "emoji": "\ud83d\udc69\u200d\ud83d\ude80",
+        "emoji": "👩‍🚀",
         "description": "astronaut"
     },
 ];
 
 const stars = [
-    "⋆", "✨", "✧", "･ﾟ", " : ", "*", "゜", "・",
-    ".", "｡", "･ﾟﾟ", "＊", "🌟", "˚｡",
-    ":..", "+", "‧̍̊", "☆", "-:", "⋇", "✦",
+    "⋆", "✨", "✧", "･ﾟ", ":", "*", "・",
+    ".", "｡", "･ﾟ", "＊", "🌟", "˚｡",
+    ":", "+", "‧̍̊", "☆", ",", "⋇", "✦",
     "★", "☆", "☾", "⋆", "・", "゜"
 ];
 
@@ -151,13 +151,13 @@ const spaceThings = [{
 const generateScene = () => {
 
     const randomSceneArr = [];
-    for (let i = 0; i < 12; i++) {
-        randomSceneArr.push(stars[Math.floor(Math.random() + i)]);
+    for (let i = 0; i < 22; i++) {
+        randomSceneArr.push(stars[Math.floor(Math.random() * stars.length)]);
         //randomSceneArr.push(stars[Math.floor(Math.random() * 1)]);
     }
 
-    for (let i = 0; i < 35; i++) {
-        randomSceneArr.push(spaces[Math.floor(Math.random() + 1)]);
+    for (let i = 0; i < 24; i++) {
+        randomSceneArr.push(spaces[Math.floor(Math.random() * spaces.length)]);
     }
 
     randomSceneArr.push(inhabitants[Math.floor(Math.random() * inhabitants.length)].emoji);
@@ -177,13 +177,19 @@ const generateScene = () => {
         return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
     };
 
-    tweetWithEscapes = tweet.splice(17, 0, "\n\n");
-    tweetWithEscapes = tweetWithEscapes.splice(33, 0, "\n\n");
-    tweetWithEscapes = tweetWithEscapes.splice(49, 0, "\n\n");
+    for(let i = 0; i < 4; i++) {
+        tweet = tweet.splice(Math.floor(Math.random() * 64), 0, "\n");
+    }
+   
+    console.log(tweet);
+    console.log(tweet.length);
 
-    console.log(tweetWithEscapes);
-    console.log(tweetWithEscapes.length);
-    tweetNews(tweetWithEscapes).catch(console.log);
+    try {
+        tweetNews(tweetWithEscapes).catch(console.log);
+    } catch(e){
+        console.log(e);
+        tweetNews(tweetWithEscapes+".").catch(console.log);
+    }
 }
 
 function shuffleArray(array) {
@@ -194,5 +200,13 @@ function shuffleArray(array) {
     return array;
 }
 
+//tweet every 3 hours
+const INTERVALHOURS = 10800000;
 
 generateScene();
+
+(function () {
+    setInterval(function () {
+        generateScene();
+    }, INTERVALHOURS);
+})();

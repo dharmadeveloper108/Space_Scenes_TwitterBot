@@ -100,11 +100,39 @@ const inhabitants = [{
         "description": "alien"
     },
     {
-        "emoji": "👨‍🚀",
+        "emoji": "\ud83d\udc68\ud83c\udffb\u200d\ud83d\ude80",
         "description": "astronaut"
     },
     {
-        "emoji": "👩‍🚀",
+        "emoji": "\ud83d\udc68\ud83c\udffc\u200d\ud83d\ude80",
+        "description": "astronaut"
+    },
+    {
+        "emoji": "\ud83d\udc68\ud83c\udffd\u200d\ud83d\ude80",
+        "description": "astronaut"
+    },
+    {
+        "emoji": "\ud83d\udc68\ud83c\udffe\u200d\ud83d\ude80",
+        "description": "astronaut"
+    },
+    {
+        "emoji": "\ud83d\udc69\ud83c\udffb\u200d\ud83d\ude80",
+        "description": "astronaut"
+    },
+    {
+        "emoji": "\ud83d\udc69\ud83c\udffc\u200d\ud83d\ude80",
+        "description": "astronaut"
+    },
+    {
+        "emoji": "\ud83d\udc69\ud83c\udffd\u200d\ud83d\ude80",
+        "description": "astronaut"
+    },
+    {
+        "emoji": "\ud83d\udc69\ud83c\udffe\u200d\ud83d\ude80",
+        "description": "astronaut"
+    },
+    {
+        "emoji": "\ud83d\udc69\ud83c\udfff\u200d\ud83d\ude80",
         "description": "astronaut"
     },
 ];

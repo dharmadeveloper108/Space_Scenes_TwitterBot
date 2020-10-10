@@ -1,5 +1,8 @@
 const Twitter = require('twitter-lite');
 require('dotenv').config();
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000
 
 const client = new Twitter({
     subdomain: "api", // "api" is the default (change for other subdomains)
@@ -205,7 +208,7 @@ const generateScene = () => {
         return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
     };
 
-    for(let i = 0; i < 4; i++) {
+    for(let i = 0; i < 6; i++) {
         tweet = tweet.splice(Math.floor(Math.random() * 64), 0, "\n");
     }
    
@@ -229,12 +232,14 @@ function shuffleArray(array) {
 }
 
 //tweet every 3 hours
-const INTERVALHOURS = 10800000;
+const THREEHOURS = 10800000;
 
-//generateScene();
+app.listen(PORT, () => {
+    console.log('Server listening on port 3000...');
 
-(function () {
+    (function () {
     setInterval(function () {
         generateScene();
-    }, INTERVALHOURS);
-})();
+    }, THREEHOURS);
+    })();
+});

@@ -185,10 +185,10 @@ const generateScene = () => {
     console.log(tweet.length);
 
     try {
-        tweetNews(tweetWithEscapes).catch(console.log);
+        tweetNews(tweet).catch(console.log);
     } catch(e){
         console.log(e);
-        tweetNews(tweetWithEscapes+".").catch(console.log);
+        tweetNews(tweet+".").catch(console.log);
     }
 }
 
@@ -203,7 +203,7 @@ function shuffleArray(array) {
 //tweet every 3 hours
 const INTERVALHOURS = 10800000;
 
-generateScene();
+//generateScene();
 
 (function () {
     setInterval(function () {

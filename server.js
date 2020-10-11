@@ -17,7 +17,7 @@ const client = new Twitter({
     access_token_secret: process.env.TWITTER_ACC_TOK_SEC
 });
 
-const tweetNews = async (tweet) => {
+const generateTweet = async (tweet) => {
     await client.post("statuses/update", {
         status: tweet,
         auto_populate_reply_metadata: true,
@@ -26,19 +26,19 @@ const tweetNews = async (tweet) => {
 
 const planets = [{
         "emoji": "🌎",
-        "description": "globe showing Americas",
+        "description": "globe",
     },
     {
         "emoji": "🌞",
-        "description": "sun with face"
+        "description": "smiling sun"
     },
     {
         "emoji": "🌏",
-        "description": "globe showing Asia-Australia"
+        "description": "globe"
     },
     {
         "emoji": "🌍",
-        "description": "globe showing Europe-Africa"
+        "description": "globe"
     },
     {
         "emoji": "🌙",
@@ -50,11 +50,11 @@ const planets = [{
     },
     {
         "emoji": "🌝",
-        "description": "full moon face"
+        "description": "smiling full moon"
     },
     {
         "emoji": "🌚",
-        "description": "new moon face"
+        "description": "smiling new moon"
     },
     {
         "emoji": "🌕",
@@ -62,7 +62,7 @@ const planets = [{
     },
     {
         "emoji": "🌜",
-        "description": "last quarter moon with face"
+        "description": "last quarter moon"
     },
     {
         "emoji": "🌘",
@@ -87,7 +87,7 @@ const planets = [{
 ];
 
 const inhabitants = [{
-        "emoji": "\ud83d\ude80",
+        "emoji": "🚀",
         "description": "rocket"
     },
     {
@@ -97,6 +97,10 @@ const inhabitants = [{
     {
         "emoji": "\ud83d\udc7e",
         "description": "alien monster"
+    },
+    {
+        "emoji": "\ud83d\udef0\ufe0f",
+        "description": "satellite"
     },
     {
         "emoji": "\ud83d\udc7d",
@@ -179,22 +183,53 @@ const spaceThings = [{
     }
 ];
 
+const generateSentence = (inhabitant, planet, spaceThing) => {
+    const sentences = [
+        `You are like this ${inhabitant} cruising the galaxies. Off to the next adventure!`,
+        `Somewhere, ${getArticle(inhabitant) + " " + inhabitant} and ${getArticle(spaceThing) + " " + spaceThing} are playing around in outer space. All is peaceful.`,
+        `Take a deep breath. This ${planet} is watching over you. The universe is wide and beautiful.`,
+        `These ${inhabitant}, ${spaceThing} and ${planet} say hi! Look up: your troubles don't seem so scary from up here.`,
+        `These ${inhabitant}, ${spaceThing} and ${planet} are waving to you from outer space. If you are feeling a little down, look up!`,
+        `Oh look, ${getArticle(inhabitant) + " " + inhabitant} is chasing ${getArticle(spaceThing) + " " + spaceThing} in outer space. Looks like they could be friends!`,
+        `It's so quite up here! Come join these ${inhabitant}, ${spaceThing} and ${planet} when your planet gets a little too noisey.`,
+        `With just a sprinkle of stars, ${getArticle(inhabitant) + " " + inhabitant}, ${getArticle(planet) + " " + planet} and ${getArticle(spaceThing)+ " " + spaceThing}, the universe doesn't seem so dark!`,
+        `The universe is so big! Somewhere, ${getArticle(inhabitant) + " " + inhabitant}, ${getArticle(planet) + " " + planet} and ${getArticle(spaceThing)+ " " + spaceThing} have all the space they want to play around.`,
+        `Breath in... breath out. This ${inhabitant} is rooting for you, along with their ${spaceThing} and ${planet} friends. You are doing great!`,
+        `This ${inhabitant} is flying around, forever chasing this ${spaceThing}. This ${planet} has known them both since the beginning of time and can swear, it's just a game!`,
+        `Hi human! I, the mighty ${inhabitant}, along with my friends ${spaceThing} and ${planet} greet you! Look for us when you need courage, we have it to spare!`
+    ];
+
+    let sentence = sentences[Math.floor(Math.random() * sentences.length)];
+    return sentence;
+}
+
+const getArticle = (str) => {
+    let article = "";
+    const vowelRegex = '^[aieouAIEOU].*';
+    let matched = str.match(vowelRegex);
+    matched ? article = "an" : article = "a";
+    return article;
+}
+
 const generateScene = () => {
 
     const randomSceneArr = [];
     for (let i = 0; i < 22; i++) {
         randomSceneArr.push(stars[Math.floor(Math.random() * stars.length)]);
-        //randomSceneArr.push(stars[Math.floor(Math.random() * 1)]);
     }
 
     for (let i = 0; i < 24; i++) {
         randomSceneArr.push(spaces[Math.floor(Math.random() * spaces.length)]);
     }
 
-    randomSceneArr.push(inhabitants[Math.floor(Math.random() * inhabitants.length)].emoji);
-    randomSceneArr.push(planets[Math.floor(Math.random() * planets.length)].emoji);
+    let inhabitant = inhabitants[Math.floor(Math.random() * inhabitants.length)];
+    randomSceneArr.push(inhabitant.emoji);
 
-    randomSceneArr.push(spaceThings[Math.floor(Math.random() * spaceThings.length)].emoji);
+    let planet = planets[Math.floor(Math.random() * planets.length)];
+    randomSceneArr.push(planet.emoji);
+
+    let spaceThing = spaceThings[Math.floor(Math.random() * spaceThings.length)];
+    randomSceneArr.push(spaceThing.emoji);
 
     //console.log(randomSceneArr);
 
@@ -208,18 +243,19 @@ const generateScene = () => {
         return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
     };
 
-    for(let i = 0; i < 6; i++) {
+    for(let i = 0; i < 8; i++) {
         tweet = tweet.splice(Math.floor(Math.random() * 64), 0, "\n");
     }
    
-    console.log(tweet);
-    console.log(tweet.length);
+    let fullTweet = tweet + "\n" + generateSentence(inhabitant.description, planet.description, spaceThing.description);
+    console.log(fullTweet);
+    console.log(fullTweet.length);
 
     try {
-        tweetNews(tweet).catch(console.log);
+        generateTweet(fullTweet).catch(console.log);
     } catch(e){
         console.log(e);
-        tweetNews(tweet+".").catch(console.log);
+        generateTweet(fullTweet+".").catch(console.log);
     }
 }
 

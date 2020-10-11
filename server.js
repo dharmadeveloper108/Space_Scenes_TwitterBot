@@ -247,7 +247,7 @@ const generateScene = () => {
         tweet = tweet.splice(Math.floor(Math.random() * 64), 0, "\n");
     }
    
-    let fullTweet = tweet + "\n" + generateSentence(inhabitant.description, planet.description, spaceThing.description);
+    let fullTweet = tweet + "\n\n" + generateSentence(inhabitant.description, planet.description, spaceThing.description);
     console.log(fullTweet);
     console.log(fullTweet.length);
 
@@ -277,6 +277,6 @@ app.listen(PORT, () => {
     (function () {
     setInterval(function () {
         generateScene();
-    }, THREEHOURS);
+    }, THREEHOURS * 2);
     })();
 });

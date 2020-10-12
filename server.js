@@ -191,12 +191,17 @@ const generateSentence = (inhabitant, planet, spaceThing) => {
         `These ${inhabitant}, ${spaceThing} and ${planet} say hi! Look up: your troubles don't seem so scary from up here.`,
         `These ${inhabitant}, ${spaceThing} and ${planet} are waving to you from outer space. If you are feeling a little down, look up!`,
         `Oh look, ${getArticle(inhabitant) + " " + inhabitant} is chasing ${getArticle(spaceThing) + " " + spaceThing} in outer space. Looks like they could be friends!`,
-        `It's so quite up here! Come join these ${inhabitant}, ${spaceThing} and ${planet} when your planet gets a little too noisey.`,
+        `It's so quite up here! Come join these ${inhabitant}, ${spaceThing} and ${planet} whenever your planet gets a little too noisey.`,
         `With just a sprinkle of stars, ${getArticle(inhabitant) + " " + inhabitant}, ${getArticle(planet) + " " + planet} and ${getArticle(spaceThing)+ " " + spaceThing}, the universe doesn't seem so dark!`,
         `The universe is so big! Somewhere, ${getArticle(inhabitant) + " " + inhabitant}, ${getArticle(planet) + " " + planet} and ${getArticle(spaceThing)+ " " + spaceThing} have all the space they want to play around.`,
         `Breath in... breath out. This ${inhabitant} is rooting for you, along with their ${spaceThing} and ${planet} friends. You are doing great!`,
-        `This ${inhabitant} is flying around, forever chasing this ${spaceThing}. This ${planet} has known them both since the beginning of time and can swear, it's just a game!`,
-        `Hi human! I, the mighty ${inhabitant}, along with my friends ${spaceThing} and ${planet} greet you! Look for us when you need courage, we have it to spare!`
+        `This ${inhabitant} is flying around, forever chasing ${getArticle(spaceThing) + " " + spaceThing}. This ${planet} has known them both since the beginning of time and can swear, it's just a game!`,
+        `Hi human! I, the mighty ${inhabitant}, along with my friends ${spaceThing} and ${planet} greet you! Look for us when you need courage, we have it to spare!`,
+        `Up up high in the sky, ${getArticle(inhabitant) + " " + inhabitant}, ${getArticle(planet) + " " + planet} and ${getArticle(spaceThing) + " " + spaceThing} are trying their best, just like you! We are all part of a big intergalactic family.`,
+        `What are ${getArticle(inhabitant) + " " + inhabitant}, ${getArticle(planet) + " " + planet} and ${getArticle(spaceThing) + " " + spaceThing} doing together in the same sky? How would I know, I'm just a bot.`,
+        `If you look up at the sky on a starry night, you might see this ${inhabitant} approaching ${getArticle(planet) + " " + planet}, while ${getArticle(spaceThing) + " " + spaceThing} watches them eagerly. Yearning really is a funny thing.`,
+        `Look at this odd bunch! If ${getArticle(inhabitant) + " " + inhabitant} and ${getArticle(spaceThing) + " " + spaceThing} can be friends, you too can befriend anyone.`,
+        `Be good, be kind and be happy. These ${inhabitant}, ${spaceThing} and ${planet} are sending you good vibes all the way from outer space!`
     ];
 
     let sentence = sentences[Math.floor(Math.random() * sentences.length)];
@@ -214,11 +219,11 @@ const getArticle = (str) => {
 const generateScene = () => {
 
     const randomSceneArr = [];
-    for (let i = 0; i < 22; i++) {
+    for (let i = 0; i < 26; i++) {
         randomSceneArr.push(stars[Math.floor(Math.random() * stars.length)]);
     }
 
-    for (let i = 0; i < 24; i++) {
+    for (let i = 0; i < 30; i++) {
         randomSceneArr.push(spaces[Math.floor(Math.random() * spaces.length)]);
     }
 
@@ -247,7 +252,16 @@ const generateScene = () => {
         tweet = tweet.splice(Math.floor(Math.random() * 64), 0, "\n");
     }
    
-    let fullTweet = tweet + "\n\n" + generateSentence(inhabitant.description, planet.description, spaceThing.description);
+    console.log(tweet);
+    console.log(tweet.length);
+
+    return tweet; 
+    
+}
+
+const generateSceneSentence = (tweet) => {
+
+    let fullTweet = generateScene() + "\n\n" + generateSentence(inhabitant.description, planet.description, spaceThing.description);
     console.log(fullTweet);
     console.log(fullTweet.length);
 
@@ -273,10 +287,21 @@ const THREEHOURS = 10800000;
 app.listen(PORT, () => {
     console.log('Server running...');
 
-    generateScene();
     (function () {
     setInterval(function () {
-        generateScene();
-    }, THREEHOURS * 2);
+        try {
+            generateTweet(generateScene()).catch(console.log);
+        } catch(e){
+            console.log(e);
+            generateTweet(generateScene()+".").catch(console.log);
+        }
+    }, THREEHOURS);
     })();
+
+
+    (function () {
+        setInterval(function () {
+            generateSceneSentence();
+        }, THREEHOURS * 4);
+        })();
 });

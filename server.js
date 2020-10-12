@@ -204,7 +204,7 @@ const generateSentence = (inhabitant, planet, spaceThing) => {
         `Be good, be kind and be happy. These ${inhabitant}, ${spaceThing} and ${planet} are sending you good vibes all the way from outer space!`
     ];
 
-    let sentence = sentences[Math.floor(Math.random() * sentences.length)];
+    let sentence = getRandomNoRepeats(sentences);
     return sentence;
 }
 
@@ -236,8 +236,6 @@ const generateScene = () => {
     let spaceThing = spaceThings[Math.floor(Math.random() * spaceThings.length)];
     randomSceneArr.push(spaceThing.emoji);
 
-    //console.log(randomSceneArr);
-
     const randomizedArray = shuffleArray(randomSceneArr);
     let tweet = "";
     randomizedArray.forEach(element => {
@@ -248,37 +246,50 @@ const generateScene = () => {
         return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
     };
 
-    for(let i = 0; i < 8; i++) {
+    for (let i = 0; i < 8; i++) {
         tweet = tweet.splice(Math.floor(Math.random() * 64), 0, "\n");
     }
-   
+
     console.log(tweet);
     console.log(tweet.length);
 
-    return tweet; 
-    
+    return [tweet, inhabitant.description, planet.description, spaceThing.description];
 }
 
-const generateSceneSentence = (tweet) => {
+const generateSceneSentence = () => {
 
-    let fullTweet = generateScene() + "\n\n" + generateSentence(inhabitant.description, planet.description, spaceThing.description);
+    let tweetElems = generateScene();
+
+    let fullTweet = tweetElems[0] + "\n\n" + generateSentence(tweetElems[1], tweetElems[2], tweetElems[3]);
     console.log(fullTweet);
     console.log(fullTweet.length);
 
     try {
         generateTweet(fullTweet).catch(console.log);
-    } catch(e){
+    } catch (e) {
         console.log(e);
-        generateTweet(fullTweet+".").catch(console.log);
+        generateTweet(fullTweet + ".").catch(console.log);
     }
 }
 
-function shuffleArray(array) {
+const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+}
+
+const getRandomNoRepeats = (array) => {
+    var copy = array.slice(0);
+
+    if (copy.length < 1) {
+        copy = array.slice(0);
+    }
+    var index = Math.floor(Math.random() * copy.length);
+    var item = copy[index];
+    copy.splice(index, 1);
+    return item;
 }
 
 //tweet every 3 hours
@@ -288,20 +299,22 @@ app.listen(PORT, () => {
     console.log('Server running...');
 
     (function () {
-    setInterval(function () {
-        try {
-            generateTweet(generateScene()).catch(console.log);
-        } catch(e){
-            console.log(e);
-            generateTweet(generateScene()+".").catch(console.log);
-        }
-    }, THREEHOURS);
+        setInterval(function () {
+            try {
+                generateTweet(generateScene()).catch(console.log);
+            } catch (e) {
+                console.log(e);
+                generateTweet(generateScene() + ".").catch(console.log);
+            }
+        }, THREEHOURS);
     })();
+    console.log(generateScene());
 
+    generateSceneSentence();
 
     (function () {
         setInterval(function () {
             generateSceneSentence();
-        }, THREEHOURS * 4);
-        })();
+        }, THREEHOURS * 8);
+    })();
 });

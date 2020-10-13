@@ -252,6 +252,7 @@ const generateScene = () => {
 
     console.log(tweet);
     console.log(tweet.length);
+    console.log(inhabitant.description + " " + planet.description + " " + spaceThing.description);
 
     return [tweet, inhabitant.description, planet.description, spaceThing.description];
 }

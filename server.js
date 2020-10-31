@@ -125,10 +125,14 @@ const inhabitants = [{
 ];
 
 const stars = [
-    "✨", "✧", "･ﾟ", ":", "*", "・",
-    ".", "｡", "･ﾟ", "＊", "🌟", "˚｡", "⭐️",
+    "✧", "･ﾟ", ":", "*", "・",
+    ".", "｡", "･ﾟ", "＊", "˚｡", 
     ":", "+", "‧̍̊", "☆", ",", "⋇", "✦",
-    "★", "☆", "☾", "・", "゜", "💫"
+    "★", "☆",  "・", "゜", 
+];
+
+const bigStars = [
+    "✨", "🌟", "⭐️", "💫", "☾",
 ];
 
 const spaces = ["\u3000", "\u2002", "\u2003", "\u2004", "\u2009", "\u200a"];
@@ -216,6 +220,11 @@ const generateScene = () => {
     let spaceThing = spaceThings[Math.floor(Math.random() * spaceThings.length)];
     randomSceneArr.push(spaceThing.emoji);
 
+    let bigStar1 = bigStars[Math.floor(Math.random() * bigStars.length)];
+    let bigStar2 = bigStars[Math.floor(Math.random() * bigStars.length)];
+    randomSceneArr.push(bigStar1);
+    randomSceneArr.push(bigStar2);
+
     for(let i = 0; i < getRandomArbitrary(5,12); i++) {
         randomSceneArr.push("\n");
     }
@@ -245,7 +254,7 @@ const generateSceneSentence = () => {
         generateTweet(fullTweet).catch(console.log);
     } catch (e) {
         console.log(e);
-        generateTweet(fullTweet + ".").catch(console.log);
+        generateTweet(fullTweet + stars[Math.floor(Math.random() * stars.length)]).catch(console.log);
     }
 }
 
@@ -285,16 +294,18 @@ app.listen(PORT, () => {
                 generateTweet(generateScene()).catch(console.log);
             } catch (e) {
                 console.log(e);
-                generateTweet(generateScene() + ".").catch(console.log);
+                generateTweet(generateScene() + stars[Math.floor(Math.random() * stars.length)]).catch(console.log);
             }
         }, THREEHOURS);
     })();
 
-    generateSceneSentence();
+    //generateSceneSentence();
 
     (function () {
         setInterval(function () {
+            
             generateSceneSentence();
+
         }, THREEHOURS * 8);
     })();
 });

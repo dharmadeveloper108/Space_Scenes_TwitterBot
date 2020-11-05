@@ -132,7 +132,7 @@ const stars = [
 ];
 
 const bigStars = [
-    "✨", "🌟", "⭐️", "💫", "☾",
+    "✨", "🌟", "⭐️", "💫", "☾", "\u3000", "\u2002", "\u2003", "\u2004", "\u2009", "\u200a"
 ];
 
 const spaces = ["\u3000", "\u2002", "\u2003", "\u2004", "\u2009", "\u200a"];
@@ -269,7 +269,7 @@ const shuffleArray = (array) => {
 const getRandomNoRepeats = (array) => {
     var copy = array.slice(0);
 
-    if (copy.length < 1) {
+    if (copy.length <= 1) {
         copy = array.slice(0);
     }
     var index = Math.floor(Math.random() * copy.length);
@@ -299,7 +299,7 @@ app.listen(PORT, () => {
         }, THREEHOURS);
     })();
 
-    //generateSceneSentence();
+    generateSceneSentence();
 
     (function () {
         setInterval(function () {

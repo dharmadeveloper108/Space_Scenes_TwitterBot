@@ -38,7 +38,13 @@ module.exports = {
             `What are ${getArticle(inhabitant) + " " + inhabitant}, ${getArticle(planet) + " " + planet} and ${getArticle(spaceThing) + " " + spaceThing} doing together in the same sky? How would I know, I'm just a bot.`,
             `If you look up at the sky on a starry night, you might see this ${inhabitant} approaching ${getArticle(planet) + " " + planet}, while ${getArticle(spaceThing) + " " + spaceThing} watches them eagerly. Yearning really is a funny thing.`,
             `Look at this odd bunch! If ${getArticle(inhabitant) + " " + inhabitant} and ${getArticle(spaceThing) + " " + spaceThing} can be friends, you too can befriend anyone.`,
-            `Be good, be kind and be happy. These ${inhabitant}, ${spaceThing} and ${planet} are sending you good vibes all the way from outer space!`
+            `Be good, be kind and be happy. These ${inhabitant}, ${spaceThing} and ${planet} are sending you good vibes all the way from outer space!`,
+            `Howdy, ${inhabitant} here, travelling through galaxies! You are born in a location, and at first you call that home. Then your nation, your continent... My wish for you is that you grow enough to call the whole universe home.`,
+            `Why is this ${inhabitant} exploring the universe along with their ${spaceThing} friend? Why, silly, because it is there!`,
+            `Exploration, what a wonderful thing! Or so these ${inhabitant} and ${spaceThing} think, as they are approching this ${planet}. Start by exploring the space in your heart, it sure is bigger than you think!`,
+            `I just imagined these ${inhabitant}, ${spaceThing} and ${planet}, and here they are now! Our imagination has no limits, just like the universe and the realm of possibility in what you can achieve.`,
+            `They say the sky is the limit, but these ${inhabitant}, ${spaceThing} and ${planet} beg to differ!`,
+            `When the gravity of current events bring you down, think of this ${inhabitant} and their ${spaceThing} friend: you too, just like them, can defy gravity. You don't even need a spaceship, just your mind!`
         ];
 
         let sentence = getRandomNoRepeats(sentences);

@@ -28,7 +28,7 @@ module.exports = {
             `These ${inhabitant}, ${spaceThing} and ${planet} say hi! Look up: your troubles don't seem so scary from up here.`,
             `These ${inhabitant}, ${spaceThing} and ${planet} are waving to you from outer space. If you are feeling a little down, look up!`,
             `Oh look, ${getArticle(inhabitant) + " " + inhabitant} is chasing ${getArticle(spaceThing) + " " + spaceThing} in outer space. Looks like they could be friends!`,
-            `It's so quite up here! Come join these ${inhabitant}, ${spaceThing} and ${planet} whenever your planet gets a little too noisey.`,
+            `It's so quite up here! Come join these ${inhabitant}, ${spaceThing} and ${planet} whenever your planet gets a little too noisy.`,
             `With just a sprinkle of stars, ${getArticle(inhabitant) + " " + inhabitant}, ${getArticle(planet) + " " + planet} and ${getArticle(spaceThing)+ " " + spaceThing}, the universe doesn't seem so dark!`,
             `The universe is so big! Somewhere, ${getArticle(inhabitant) + " " + inhabitant}, ${getArticle(planet) + " " + planet} and ${getArticle(spaceThing)+ " " + spaceThing} have all the space they want to play around.`,
             `Breath in... breath out. This ${inhabitant} is rooting for you, along with their ${spaceThing} and ${planet} friends. You are doing great!`,

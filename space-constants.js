@@ -73,40 +73,70 @@ const inhabitants = [{
     "description": "alien"
 },
 {
-    "emoji": "🧑‍🚀",
+    "emoji": "👩‍🚀",
     "description": "astronaut"
 },
 {
-    "emoji": "🧑🏻‍🚀",
+    "emoji": "👩🏻‍🚀",
     "description": "astronaut"
 },
 {
-    "emoji": "🧑🏼‍🚀",
+    "emoji": "👩🏼‍🚀",
     "description": "astronaut"
 },
 {
-    "emoji": "🧑🏽‍🚀",
+    "emoji": "👩🏽‍🚀",
     "description": "astronaut"
 },
 {
-    "emoji": "🧑🏾‍🚀",
+    "emoji": "👩🏾‍🚀",
     "description": "astronaut"
 },
 {
-    "emoji": "🧑🏿‍🚀",
+    "emoji": "👩🏿‍🚀",
     "description": "astronaut"
 },
+{
+    "emoji": "👨‍🚀",
+    "description": "astronaut"
+},
+{
+    "emoji": "👨🏻‍🚀",
+    "description": "astronaut"
+},
+{
+    "emoji": "👨🏼‍🚀",
+    "description": "astronaut"
+},
+{
+    "emoji": "👨🏽‍🚀",
+    "description": "astronaut"
+},
+{
+    "emoji": "👨🏾‍🚀",
+    "description": "astronaut"
+},
+{
+    "emoji": "👨🏿‍🚀",
+    "description": "astronaut"
+}
 ];
 
 const stars = [
 "✧", "･ﾟ", ":", "*", "・",
 ".", "｡", "･ﾟ", "＊", "˚｡", 
 ":", "+", "‧̍̊", "☆", ",", "⋇", "✦",
-"★", "☆",  "・", "゜", 
+"★", "☆",  "・", "゜", "✢", "✣", "✤", 
+"✥", "✦", "✧", "✯", "✩", "✪", "✫", 
+"✬", "✭", "✮", "✶", "✷", "✵", "✸", "✹", 
+"✺", "❊", "✻", "✽", "✼", "❉", "✱", "✲", "✾", 
+"❃", "❋", "✳︎", "✴︎", "❇︎", "❈", "※", "❅", "⚙︎", 
+"✿", "❀", "❁", "❂", "✰", "❤︎", "❥", "•", "◦", 
+"●", "○", "◎", "◉", "⦿", "‣", "◇"
 ];
 
 const bigStars = [
-"✨", "🌟", "⭐️", "💫", "☾", "\u3000", "\u2002", "\u2003", "\u2004", "\u2009", "\u200a"
+"✨", "🌟", "⭐️", "💫", "☾", "\u3000", "\u2002", "\u2003", "\u2004", "\u2009", "\u200a", "💠"
 ];
 
 const spaces = ["\u3000", "\u2002", "\u2003", "\u2004", "\u2009", "\u200a"];
@@ -136,8 +166,40 @@ const spaceThings = [{
     "description": "black heart"
 },
 {
+    "emoji": "❤️",
+    "description": "red heart"
+},
+{
+    "emoji": "🧡",
+    "description": "orange heart"
+},
+{
+    "emoji": "💛",
+    "description": "yellow heart"
+},
+{
+    "emoji": "💚",
+    "description": "green heart"
+},
+{
+    "emoji": "💜",
+    "description": "purple heart"
+},
+{
+    "emoji": "🤎",
+    "description": "brown heart"
+},
+{
+    "emoji": "💖",
+    "description": "sparkling heart"
+},
+{
     "emoji": "\ud83d\udc8e",
     "description": "diamond"
+},
+{
+    "emoji": "📡",
+    "description": "satellite"
 }
 ];
 

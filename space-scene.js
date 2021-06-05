@@ -12,6 +12,13 @@ const getRandomArbitrary = (min, max) => {
     return Math.random() * (max - min) + min;
 }
 
+const getRandomBigStar = () => {
+    let bigStar1 = spaceConstants.bigStars[Math.floor(Math.random() * spaceConstants.bigStars.length)];
+    let bigStar2 = spaceConstants.bigStars[Math.floor(Math.random() * spaceConstants.bigStars.length)];
+    let bigStar3 = spaceConstants.bigStars[Math.floor(Math.random() * spaceConstants.bigStars.length)];
+    return [bigStar1, bigStar2, bigStar3]
+}
+
 module.exports = {
     generateScene: generateScene = () => {
 
@@ -33,10 +40,8 @@ module.exports = {
         let spaceThing = spaceConstants.spaceThings[Math.floor(Math.random() * spaceConstants.spaceThings.length)];
         randomSceneArr.push(spaceThing.emoji);
     
-        let bigStar1 = spaceConstants.bigStars[Math.floor(Math.random() * spaceConstants.bigStars.length)];
-        let bigStar2 = spaceConstants.bigStars[Math.floor(Math.random() * spaceConstants.bigStars.length)];
-        randomSceneArr.push(bigStar1);
-        randomSceneArr.push(bigStar2);
+        let bigStars = getRandomBigStar();
+        randomSceneArr.push(bigStars);
     
         for(let i = 0; i < getRandomArbitrary(5,12); i++) {
             randomSceneArr.push("\n");

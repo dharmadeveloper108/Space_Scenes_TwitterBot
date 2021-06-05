@@ -7,8 +7,8 @@ const getSentence = require('./space-sentence.js');
 const getScene = require('./space-scene.js');
 
 const client = new Twitter({
-    subdomain: "api", // "api" is the default (change for other subdomains)
-    version: "1.1", // version "1.1" is the default (change for other subdomains)
+    subdomain: "api", 
+    version: "1.1", 
     // API key
     consumer_key: process.env.TWITTER_CONS_KEY,
     // API key secret

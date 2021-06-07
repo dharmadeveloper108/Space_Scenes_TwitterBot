@@ -15,8 +15,7 @@ const getRandomArbitrary = (min, max) => {
 const getRandomBigStar = () => {
     let bigStar1 = spaceConstants.bigStars[Math.floor(Math.random() * spaceConstants.bigStars.length)];
     let bigStar2 = spaceConstants.bigStars[Math.floor(Math.random() * spaceConstants.bigStars.length)];
-    let bigStar3 = spaceConstants.bigStars[Math.floor(Math.random() * spaceConstants.bigStars.length)];
-    return [bigStar1, bigStar2, bigStar3]
+    return [bigStar1, bigStar2]
 }
 
 module.exports = {
